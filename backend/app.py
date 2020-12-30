@@ -94,18 +94,3 @@ async def create_stock(stock_request: StockRequest,
         "Code": "Success",
         "message": "Stock created"
     }
-
-
-@app.get('/about')
-async def about():
-    return {"message": "Muntakimur Rahaman"}
-
-
-@app.get('/pricing')
-async def pricing():
-    return {"message": "Hello World"}
-
-
-@app.get('/contact')
-async def contact():
-    return {"message": "Hello World"}
