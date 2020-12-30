@@ -10,6 +10,7 @@ import Pricing from "./views/Pricing.js";
 import NavBar from "./components/NavBar.js";
 
 const App = () => {
+  document.title = "Stack Screener";
   return (
     <Router className="container">
       <NavBar />

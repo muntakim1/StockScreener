@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, BackgroundTasks
+from fastapi import FastAPI, Depends, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import models
 from sqlalchemy.orm import Session
@@ -54,8 +54,6 @@ async def root(db: Session = Depends(get_db)):
 def fetch_stock_data(id: int):
     db = SessionLocal()
     stock = db.query(Stock).filter(Stock.id == id).first()
-    stock.forward_pe = 10
-
     yahoo_data = yf.Ticker(stock.symbol)
 
     stock.ma200 = yahoo_data.info['twoHundredDayAverage']
@@ -75,13 +73,22 @@ async def create_stock(stock_request: StockRequest,
                        db: Session = Depends(get_db)):
 
     # Adding data to Database
-    stock = Stock()
-    stock.symbol = stock_request.symbol
-    db.add(stock)
-    db.commit()
-
+    # print("ping ", bool(db.query(Stock).filter_by(
+    #     symbol=stock_request.symbol).first()))
+    if (bool(db.query(Stock).filter_by(
+            symbol=stock_request.symbol).first())):
+        raise HTTPException(
+            status_code=409, detail="{} Already Exists !".format(stock_request.symbol))
+    elif (stock_request.symbol == ""):
+        raise HTTPException(
+            status_code=402, detail="Field can't be empty!".format(stock_request.symbol))
     # Background Task Queue
-    background_tasks.add_task(fetch_stock_data, stock.id)
+    else:
+        stock = Stock()
+        stock.symbol = stock_request.symbol
+        db.add(stock)
+        db.commit()
+        background_tasks.add_task(fetch_stock_data, stock.id)
 
     return {
         "Code": "Success",
