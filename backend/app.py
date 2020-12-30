@@ -43,8 +43,12 @@ def get_db():
 
 
 @app.get('/')
-async def root():
-    return {"message": "Hello World"}
+async def root(db: Session = Depends(get_db)):
+    """
+    Main root function 
+    """
+    stocks = db.query(Stock).all()
+    return {"data": stocks}
 
 
 def fetch_stock_data(id: int):
@@ -66,7 +70,9 @@ def fetch_stock_data(id: int):
 
 
 @app.post('/')
-async def create_stock(stock_request: StockRequest, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
+async def create_stock(stock_request: StockRequest,
+                       background_tasks: BackgroundTasks,
+                       db: Session = Depends(get_db)):
 
     # Adding data to Database
     stock = Stock()
