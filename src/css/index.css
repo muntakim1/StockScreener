@@ -4,5 +4,20 @@
 }
 
 body {
-    box-sizing: border-box
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+  box-sizing: border-box
+}
+
+a {
+  color: #47b2e4;
+}
+
+a:hover {
+  color: #73c5eb;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Jost", sans-serif;
 }

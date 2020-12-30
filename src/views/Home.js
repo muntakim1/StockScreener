@@ -5,10 +5,11 @@ import TableData from "../components/TableData";
 
 const Home = () => {
   return (
-    <div className="container">
+    <section id="about" className="container">
       <SearchSymbol></SearchSymbol>
       <TableData />
-    </div>
+      <div styles={{ height: "100vh" }}></div>
+    </section>
   );
 };
 

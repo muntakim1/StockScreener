@@ -7,8 +7,9 @@ const GifObject = () => {
     <div>
       <img
         src={url}
+        alt="Gif Images"
         style={{
-          width: "56px",
+          width: "42px",
           display: "block",
           marginLeft: "auto",
           marginRight: "auto",

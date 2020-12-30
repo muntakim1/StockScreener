@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import "aos";
 //App.js
 import App from "./App.js";
 
