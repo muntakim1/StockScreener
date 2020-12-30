@@ -8,7 +8,8 @@ from models.models import Stock
 import yfinance as yf
 
 # CORS ORIGIN
-origins = ["http://localhost:3000", "http://localhost:8080"]
+origins = ["http://localhost:5000",
+           "http://localhost:3000", "http://localhost:8080"]
 
 # App
 app = FastAPI()
@@ -93,4 +94,13 @@ async def create_stock(stock_request: StockRequest,
     return {
         "Code": "Success",
         "message": "Stock created"
+    }
+
+
+@app.delete('/{id}')
+def delete_stock(id: int, db: Session = Depends(get_db)):
+    db.query(Stock).filter_by(id=id).delete()
+    db.commit()
+    return{
+        "message": "{} has been removed from database".format(id)
     }

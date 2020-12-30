@@ -68,11 +68,22 @@ const columns = [
   },
 ];
 
-const options = {
-  filterType: "checkbox",
-};
-
 const TableData = () => {
+  const [id, setId] = useState([]);
+  const handleRowClick = (rowData) => {
+    console.log(rowData.data);
+    setId(rowData.data);
+    id.map((id) => {
+      return axios
+        .delete(`http://127.0.0.1:8000/${id.index + 1}`)
+        .then((res) => alert(res.data.message));
+    });
+  };
+  const options = {
+    filterType: "checkbox",
+    onRowsDelete: handleRowClick,
+  };
+
   const [data, setData] = useState();
   async function fetchData() {
     await axios
