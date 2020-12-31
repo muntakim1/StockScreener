@@ -7,6 +7,7 @@ import Home from "./views/Home.js";
 import About from "./views/About.js";
 import Contact from "./views/Contact.js";
 import Pricing from "./views/Pricing.js";
+import StockScreener from "./views/StockScreener.js";
 //components
 import NavBar from "./components/NavBar.js";
 import FooterComponent from "./components/FooterComponent.js";
@@ -40,6 +41,12 @@ const App = () => {
         </Route>
         <Route path="/pricing">
           <Pricing />
+        </Route>
+        <Route path="/contact">
+          <Contact></Contact>
+        </Route>
+        <Route path="/demo">
+          <StockScreener></StockScreener>
         </Route>
         <Route path="/contact">
           <Contact></Contact>
