@@ -13,9 +13,10 @@ const Home = () => {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <h1>Better Solutions For Your Business</h1>
+              <h1>Better Solutions For Stock Market Screening</h1>
               <h2>
-                We are team of talanted designers making websites with Bootstrap
+                We are team of talanted peoples with proper dedication to serve
+                you the best.
               </h2>
               <div class="d-lg-flex">
                 <Link to="/pricing" class="btn-get-started scrollto">
