@@ -3,14 +3,6 @@ import MUIDataTable from "mui-datatables";
 import axios from "axios";
 const columns = [
   {
-    name: "id",
-    label: "id",
-    options: {
-      filter: true,
-      sort: true,
-    },
-  },
-  {
     name: "symbol",
     label: "symbol",
     options: {
@@ -69,13 +61,16 @@ const columns = [
 ];
 
 const TableData = () => {
+  const [data, setData] = useState();
   const [id, setId] = useState([]);
   const handleRowClick = (rowData) => {
     console.log(rowData.data);
     setId(rowData.data);
+    console.log();
     id.map((id) => {
+      console.log(data[id.index].id);
       return axios
-        .delete(`http://127.0.0.1:8000/${id.index + 1}`)
+        .delete(`http://127.0.0.1:8000/${data[id.index].id}`)
         .then((res) => alert(res.data.message));
     });
   };
@@ -84,7 +79,6 @@ const TableData = () => {
     onRowsDelete: handleRowClick,
   };
 
-  const [data, setData] = useState();
   async function fetchData() {
     await axios
       .get("http://127.0.0.1:8000")

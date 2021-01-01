@@ -19,7 +19,7 @@ const Home = () => {
                 you the best.
               </h2>
               <div class="d-lg-flex">
-                <Link to="/pricing" class="btn-get-started scrollto">
+                <Link to="/pricing" className="btn-get-started scrollto">
                   Get Started
                 </Link>
                 <a
@@ -29,7 +29,7 @@ const Home = () => {
                   data-autoplay="true"
                 >
                   {" "}
-                  Watch Video <i class="icofont-play-alt-2"></i>
+                  Watch Video <i className="icofont-play-alt-2"></i>
                 </a>
               </div>
             </div>
